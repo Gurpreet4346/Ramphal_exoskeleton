@@ -2,7 +2,7 @@
 
 **For aiding humans in industrial and general-purpose lifting.**
 
-![Smart exoskeleton for heavy-weight lifting](images/exoskeleton.png)
+![Smart exoskeleton](images/exoskeleton.png)
 
 ---
 
