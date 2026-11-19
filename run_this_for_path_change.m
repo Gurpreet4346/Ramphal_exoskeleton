@@ -1,5 +1,5 @@
 mdl    = 'Exoskeleton1';
-folder = 'Teb sem5';        % <- change to your folder name (relative to the project folder)
+folder = 'Teb sem5\Teb sem5';        % <- change to your folder name (relative to the project folder)
 
 load_system(mdl);
 blks = find_system(mdl, 'LookUnderMasks','all', 'FollowLinks','on', ...

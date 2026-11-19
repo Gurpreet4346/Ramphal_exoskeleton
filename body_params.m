@@ -19,7 +19,10 @@ m_spine5 = 3.62;
 
 % 4. Top upper-body block (AH_Spine 12 carries torso above spine + head + arms):
 % remaining chest 3.62 + arms 6.72 + head 4.72 = 15.06 kg
-m_top_upper_body = 15.06;
+if ~exist('m_payload', 'var')
+    m_payload = 0; % Default: no external payload
+end
+m_top_upper_body = 15.06 + m_payload;
 
 % 5. Lower limbs:
 % Thighs: 9.63 kg each
@@ -36,4 +39,17 @@ m_total_body = m_pelvis + m_spine1 + m_spine2 + m_spine3 + m_spine4 + m_spine5 +
                m_top_upper_body + m_thigh_right + m_thigh_left + ...
                m_shank_foot_right + m_shank_foot_left;
 
-fprintf('body_params.m loaded: Total body mass = %.2f kg\n', m_total_body);
+% 6. Distributed Spine Motion Weight
+if ~exist('spine_motion_weight', 'var')
+    spine_motion_weight = 0.25; % Default weight for distributed spine flexion
+end
+
+% 7. Exoskeleton Motor Assist Profile Defaults
+if ~exist('tau_spool_time', 'var')
+    tau_spool_time = linspace(0, 4.5, 451)';
+end
+if ~exist('tau_spool_table', 'var')
+    tau_spool_table = zeros(size(tau_spool_time)); % Default: unassisted
+end
+
+fprintf('body_params.m loaded: Total body mass = %.2f kg, spine_motion_weight = %.2f\n', m_total_body, spine_motion_weight);
